@@ -10,16 +10,6 @@ class Story
     private $author;
 
     /**
-     * @var Score
-     */
-    private $score;
-
-    /**
-     * @var Comment[]
-     */
-    private $comments;
-
-    /**
      * @var string
      */
     private $body;
@@ -28,6 +18,17 @@ class Story
      * @var string
      */
     private $title;
+
+    /**
+     * @var Score[]
+     */
+    private $score;
+
+    /**
+     * @var Comment[]
+     */
+    private $comments;
+
 
     public function __construct(User $author, $body, $title)
     {
@@ -77,7 +78,7 @@ class Story
     }
 
     /**
-     * @return Score
+     * @return Score[]
      */
     public function getScore()
     {
@@ -85,7 +86,7 @@ class Story
     }
 
     /**
-     * @param Score $score
+     * @param Score $score[]
      */
     public function setScore($score)
     {
@@ -107,6 +108,4 @@ class Story
     {
         $this->comments = $comments;
     }
-
-
 }

@@ -14,10 +14,37 @@ class Comment
      */
     private $story;
 
-    public function __construct(User $author, Story $story)
+    /**
+     * @var string
+     */
+    private $body;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    public function __construct(User $author, Story $story, $body)
     {
         $this->author = $author;
         $this->story = $story;
+        $this->body = $body;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 
     /**
@@ -35,14 +62,4 @@ class Comment
     {
         return $this->story;
     }
-
-    /**
-     * @param Story $story
-     */
-    public function setStory($story)
-    {
-        $this->story = $story;
-    }
-
-
 }

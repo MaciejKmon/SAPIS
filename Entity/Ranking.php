@@ -23,14 +23,6 @@ class Ranking
     }
 
     /**
-     * @param Score[] $scores
-     */
-    public function setScores($scores)
-    {
-        $this->scores = $scores;
-    }
-
-    /**
      * @return Score
      */
     public function getTopScore()
@@ -45,7 +37,4 @@ class Ranking
     {
         $this->topScore = $topScore;
     }
-
-
-
 }
