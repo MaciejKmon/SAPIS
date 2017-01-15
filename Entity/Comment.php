@@ -5,6 +5,11 @@ namespace Entity;
 class Comment
 {
     /**
+     * @var int
+     */
+    private $id;
+
+    /**
      * @var User
      */
     private $author;
@@ -29,6 +34,14 @@ class Comment
         $this->author = $author;
         $this->story = $story;
         $this->body = $body;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

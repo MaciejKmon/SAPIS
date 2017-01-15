@@ -5,6 +5,11 @@ namespace Entity;
 class Profile
 {
     /**
+     * @var int
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $theme;
@@ -36,6 +41,14 @@ class Profile
     public function __construct(User $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

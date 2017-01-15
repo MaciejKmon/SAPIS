@@ -7,6 +7,11 @@ class Score
     /**
      * @var int
      */
+    private $id;
+
+    /**
+     * @var int
+     */
     private $score;
 
     /**
@@ -24,6 +29,14 @@ class Score
         $this->score = $score;
         $this->story = $story;
         $this->voter = $voter;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

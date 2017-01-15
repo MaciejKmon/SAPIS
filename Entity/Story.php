@@ -5,6 +5,11 @@ namespace Entity;
 class Story
 {
     /**
+     * @var int
+     */
+    private $id;
+
+    /**
      * @var User
      */
     private $author;
@@ -29,12 +34,19 @@ class Story
      */
     private $comments;
 
-
     public function __construct(User $author, $body, $title)
     {
         $this->author = $author;
         $this->body = $body;
         $this->title = $title;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
