@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: maciej
- * Date: 08/01/17
- * Time: 17:38
- */
 
 namespace Entity;
 
@@ -26,19 +20,60 @@ class Story
     private $comments;
 
     /**
+     * @var string
+     */
+    private $body;
+
+    /**
+     * @var string
+     */
+    private $title;
+
+    public function __construct(User $author, $body, $title)
+    {
+        $this->author = $author;
+        $this->body = $body;
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * @param string $body
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
      * @return User
      */
     public function getAuthor()
     {
         return $this->author;
-    }
-
-    /**
-     * @param User $author
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
     }
 
     /**

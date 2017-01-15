@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: maciej
- * Date: 08/01/17
- * Time: 17:39
- */
 
 namespace Entity;
 
@@ -20,20 +14,18 @@ class Comment
      */
     private $story;
 
+    public function __construct(User $author, Story $story)
+    {
+        $this->author = $author;
+        $this->story = $story;
+    }
+
     /**
      * @return User
      */
     public function getAuthor()
     {
         return $this->author;
-    }
-
-    /**
-     * @param User $author
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
     }
 
     /**

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: maciej
- * Date: 08/01/17
- * Time: 17:38
- */
 
 namespace Entity;
-
 
 class User
 {

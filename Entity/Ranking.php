@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: maciej
- * Date: 08/01/17
- * Time: 17:44
- */
 
 namespace Entity;
 
