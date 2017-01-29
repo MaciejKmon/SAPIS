@@ -34,7 +34,7 @@ class Score
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -42,7 +42,7 @@ class Score
     /**
      * @return int
      */
-    public function getScore()
+    public function getScore(): int
     {
         return $this->score;
     }
@@ -50,7 +50,7 @@ class Score
     /**
      * @return Story
      */
-    public function getStory()
+    public function getStory(): Story
     {
         return $this->story;
     }
@@ -58,7 +58,7 @@ class Score
     /**
      * @param int $score
      */
-    public function setScore($score)
+    public function setScore(int $score)
     {
         $this->score = $score;
     }
@@ -66,7 +66,7 @@ class Score
     /**
      * @return User
      */
-    public function getVoter()
+    public function getVoter(): User
     {
         return $this->voter;
     }

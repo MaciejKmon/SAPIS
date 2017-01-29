@@ -34,7 +34,7 @@ class Story
      */
     private $comments;
 
-    public function __construct(User $author, $body, $title)
+    public function __construct(User $author, string $body, string $title)
     {
         $this->author = $author;
         $this->body = $body;
@@ -44,7 +44,7 @@ class Story
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -52,7 +52,7 @@ class Story
     /**
      * @return string
      */
-    public function getBody()
+    public function getBody(): string
     {
         return $this->body;
     }
@@ -60,7 +60,7 @@ class Story
     /**
      * @param string $body
      */
-    public function setBody($body)
+    public function setBody(string $body)
     {
         $this->body = $body;
     }
@@ -68,7 +68,7 @@ class Story
     /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -76,7 +76,7 @@ class Story
     /**
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -84,7 +84,7 @@ class Story
     /**
      * @return User
      */
-    public function getAuthor()
+    public function getAuthor(): User
     {
         return $this->author;
     }
@@ -92,7 +92,7 @@ class Story
     /**
      * @return Score[]
      */
-    public function getScore()
+    public function getScore(): array
     {
         return $this->score;
     }
@@ -100,7 +100,7 @@ class Story
     /**
      * @param Score $score[]
      */
-    public function setScore($score)
+    public function setScore(array $score)
     {
         $this->score = $score;
     }
@@ -108,7 +108,7 @@ class Story
     /**
      * @return Comment[]
      */
-    public function getComments()
+    public function getComments(): array
     {
         return $this->comments;
     }
@@ -116,7 +116,7 @@ class Story
     /**
      * @param Comment[] $comments
      */
-    public function setComments($comments)
+    public function setComments(array $comments)
     {
         $this->comments = $comments;
     }

@@ -43,7 +43,7 @@ class User
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -51,7 +51,7 @@ class User
     /**
      * @return string
      */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
@@ -59,7 +59,7 @@ class User
     /**
      * @return string
      */
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -67,7 +67,7 @@ class User
     /**
      * @param string $password
      */
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->password = md5($password);
     }
@@ -75,7 +75,7 @@ class User
     /**
      * @return Profile
      */
-    public function getProfile()
+    public function getProfile(): Profile
     {
         return $this->profile;
     }
@@ -83,7 +83,7 @@ class User
     /**
      * @param Profile $profile
      */
-    public function setProfile($profile)
+    public function setProfile(Profile $profile)
     {
         $this->profile = $profile;
     }
@@ -91,7 +91,7 @@ class User
     /**
      * @return Story[]
      */
-    public function getStories()
+    public function getStories(): array
     {
         return $this->stories;
     }
@@ -99,7 +99,7 @@ class User
     /**
      * @param Story[] $stories
      */
-    public function setStories($stories)
+    public function setStories(array $stories)
     {
         $this->stories = $stories;
     }
@@ -107,7 +107,7 @@ class User
     /**
      * @return Comment[]
      */
-    public function getComments()
+    public function getComments(): array
     {
         return $this->comments;
     }
@@ -115,7 +115,7 @@ class User
     /**
      * @param Comment[] $comments
      */
-    public function setComments($comments)
+    public function setComments(array $comments)
     {
         $this->comments = $comments;
     }

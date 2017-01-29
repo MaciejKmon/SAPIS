@@ -29,7 +29,7 @@ class Comment
      */
     private $createdAt;
 
-    public function __construct(User $author, Story $story, $body)
+    public function __construct(User $author, Story $story, string $body)
     {
         $this->author = $author;
         $this->story = $story;
@@ -39,7 +39,7 @@ class Comment
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): id
     {
         return $this->id;
     }
@@ -47,15 +47,23 @@ class Comment
     /**
      * @return string
      */
-    public function getBody()
+    public function getBody(): string
     {
         return $this->body;
     }
 
     /**
+     * @param string $body
+     */
+    public function setBody(string $body)
+    {
+        $this->body = $body;
+    }
+
+    /**
      * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
@@ -63,7 +71,7 @@ class Comment
     /**
      * @return User
      */
-    public function getAuthor()
+    public function getAuthor(): User
     {
         return $this->author;
     }
@@ -71,7 +79,7 @@ class Comment
     /**
      * @return Story
      */
-    public function getStory()
+    public function getStory(): Story
     {
         return $this->story;
     }

@@ -46,7 +46,7 @@ class Profile
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -54,7 +54,7 @@ class Profile
     /**
      * @return string
      */
-    public function getTheme()
+    public function getTheme(): string
     {
         return $this->theme;
     }
@@ -62,7 +62,7 @@ class Profile
     /**
      * @param string $theme
      */
-    public function setTheme($theme)
+    public function setTheme(string $theme)
     {
         $this->theme = $theme;
     }
@@ -70,7 +70,7 @@ class Profile
     /**
      * @return string
      */
-    public function getBiography()
+    public function getBiography(): string
     {
         return $this->biography;
     }
@@ -78,7 +78,7 @@ class Profile
     /**
      * @param string $biography
      */
-    public function setBiography($biography)
+    public function setBiography(string $biography)
     {
         $this->biography = $biography;
     }
@@ -86,7 +86,7 @@ class Profile
     /**
      * @return string
      */
-    public function getAbout()
+    public function getAbout(): string
     {
         return $this->about;
     }
@@ -94,7 +94,7 @@ class Profile
     /**
      * @param string $about
      */
-    public function setAbout($about)
+    public function setAbout(string $about)
     {
         $this->about = $about;
     }
@@ -102,7 +102,7 @@ class Profile
     /**
      * @return string
      */
-    public function getCountry()
+    public function getCountry(): string
     {
         return $this->country;
     }
@@ -110,7 +110,7 @@ class Profile
     /**
      * @param string $country
      */
-    public function setCountry($country)
+    public function setCountry(string $country)
     {
         $this->country = $country;
     }
@@ -118,7 +118,7 @@ class Profile
     /**
      * @return User
      */
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }
