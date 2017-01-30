@@ -39,7 +39,7 @@ class Comment
     /**
      * @return int
      */
-    public function getId(): id
+    public function getId(): int
     {
         return $this->id;
     }
