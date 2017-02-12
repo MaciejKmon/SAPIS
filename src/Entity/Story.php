@@ -39,6 +39,8 @@ class Story
         $this->author = $author;
         $this->body = $body;
         $this->title = $title;
+        $this->setScore([]);
+        $this->setComments([]);
     }
 
     /**

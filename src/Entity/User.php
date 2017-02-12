@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Entity;
 
@@ -37,7 +38,7 @@ class User
     public function __construct($username, $password)
     {
         $this->username = $username;
-        $this->password = md5($password);
+        $this->setPassword($password);
     }
 
     /**
@@ -119,6 +120,4 @@ class User
     {
         $this->comments = $comments;
     }
-
-
 }
