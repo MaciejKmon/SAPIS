@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Entity;
 
@@ -37,8 +38,10 @@ class Story
     public function __construct(User $author, string $body, string $title)
     {
         $this->author = $author;
-        $this->body = $body;
-        $this->title = $title;
+        $this->setBody($body);
+        $this->setTitle($title);
+        $this->setScore([]);
+        $this->setComments([]);
     }
 
     /**
