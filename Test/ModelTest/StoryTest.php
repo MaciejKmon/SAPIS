@@ -9,7 +9,9 @@ use PHPUnit\Framework\TestCase;
 
 class StoryTest extends TestCase
 {
-    public function testGetSet()
+    private $stories;
+
+    public function setUp()
     {
         $body = 'Sample story body';
         if(file_exists('../Resources/story.txt')) {
