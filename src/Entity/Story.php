@@ -28,7 +28,7 @@ class Story
     /**
      * @var Score[]
      */
-    private $score;
+    private $scores;
 
     /**
      * @var Comment[]
@@ -40,7 +40,7 @@ class Story
         $this->author = $author;
         $this->setBody($body);
         $this->setTitle($title);
-        $this->setScore([]);
+        $this->setScores([]);
         $this->setComments([]);
     }
 
@@ -95,17 +95,17 @@ class Story
     /**
      * @return Score[]
      */
-    public function getScore(): array
+    public function getScores(): array
     {
-        return $this->score;
+        return $this->scores;
     }
 
     /**
-     * @param Score $score[]
+     * @param Score $scores[]
      */
-    public function setScore(array $score)
+    public function setScores(array $scores)
     {
-        $this->score = $score;
+        $this->scores = $scores;
     }
 
     /**
