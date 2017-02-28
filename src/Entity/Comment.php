@@ -33,7 +33,7 @@ class Comment
     {
         $this->author = $author;
         $this->story = $story;
-        $this->body = $body;
+        $this->setBody($body);
     }
 
     /**
@@ -83,4 +83,6 @@ class Comment
     {
         return $this->story;
     }
+
+
 }
