@@ -3,6 +3,8 @@ namespace Entity;
 
 class Score
 {
+    const MAX_SCORE = 10;
+    const MIN_SCORE = 0;
     /**
      * @var int
      */
@@ -23,9 +25,9 @@ class Score
      */
     private $voter;
 
-    public function __construct($score, Story $story, User $voter)
+    public function __construct(int $score, Story $story, User $voter)
     {
-        $this->score = $score;
+        $this->setScore($score);
         $this->story = $story;
         $this->voter = $voter;
     }
@@ -59,7 +61,12 @@ class Score
      */
     public function setScore(int $score)
     {
-        $this->score = $score;
+        if ($score >= self::MIN_SCORE && $score <= self::MAX_SCORE) {
+            $this->score = $score;
+            return;
+        }
+
+        return new \Exception('Invalid Score', 400);
     }
 
     /**

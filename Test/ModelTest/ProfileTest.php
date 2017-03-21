@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ProfileTest extends TestCase
 {
-    public function testOwner ()
+    public function testEntity ()
     {
         $eoin = new User('Eoin', 'Eoin23password');
         $eoinProfile = new Profile($eoin);
