@@ -117,7 +117,7 @@ class Profile
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getOwner(): User
     {
         return $this->user;
     }
