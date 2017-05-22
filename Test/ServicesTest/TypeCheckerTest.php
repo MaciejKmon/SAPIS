@@ -1,7 +1,8 @@
 <?php
-namespace Test\ServicesTest;
+namespace Tests\ServicesTest;
 
-use src\Services\TypeChecker;
+use Services\TypeChecker;
+use Entity\TypeChecker as fake;
 
 class TypeCheckerTest extends \PHPUnit_Framework_TestCase
 {
@@ -9,9 +10,7 @@ class TypeCheckerTest extends \PHPUnit_Framework_TestCase
     {
         $correctData = [new \DateTime(), new \DateTime(), new \DateTime()];
         $this->assertTrue(TypeChecker::isOfType(\DateTime::class, $correctData));
-        $incorrectParameter = 'string';
-        $this->assertInstanceOf(\InvalidArgumentException::class, TypeChecker::isOfType(\DateTime::class, $incorrectParameter));
-        $incorrectData = [new \DateTime(), new \HttpRequest(), new \DateTime()];
-        $this->assertFalse(TypeChecker::isOfType(\DateTime::class));
+        $incorrectData = [new \DateTime(), new fake(), new \DateTime()];
+        $this->assertFalse(TypeChecker::isOfType(\DateTime::class, $incorrectData));
     }
 }
