@@ -23,17 +23,18 @@ class Comment
     private $author;
 
     /**
-     * @var Story
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="storyId", referencedColumnName="id")
      */
     private $story;
 
     /**
-     * @var string
+     * @ORM\Column(type="text")
      */
     private $body;
 
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 

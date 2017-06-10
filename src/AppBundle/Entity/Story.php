@@ -40,7 +40,7 @@ class Story
     private $scores;
 
     /**
-     * @var Comment[]
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="story")
      */
     private $comments;
 

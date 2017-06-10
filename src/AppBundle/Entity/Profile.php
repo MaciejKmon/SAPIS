@@ -17,27 +17,28 @@ class Profile
     private $id;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length="100")
      */
     private $theme;
 
     /**
-     * @var string
+     * @ORM\Column(type="text")
      */
     private $biography;
 
     /**
-     * @var string
+     * @ORM\Column(type="text")
      */
     private $about;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length="100")
      */
     private $country;
 
     /**
-     * @var User
+     * @ORM\OneToOne(targetEntity="User", inversedBy="profile")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
      */
     private $user;
 

@@ -77,7 +77,7 @@ class Score
             return;
         }
 
-        return new \Exception('Invalid Score', 400);
+        return new \Exception('Invalid Score');
     }
 
     /**

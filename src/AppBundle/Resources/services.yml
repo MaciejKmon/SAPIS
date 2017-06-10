@@ -1,0 +1,4 @@
+services:
+  typechecker:
+    class: AppBundle\Services\TypeChecker
+    arguments: ['@doctrine.orm.entity_manager']
