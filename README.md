@@ -1,10 +1,23 @@
 SAPIS - Simple API for literature stories
 =========================================
 
-#by Maciej Kmon
-    
-    
+##by Maciej Kmon
 
+###[Linkedin](https://www.linkedin.com/in/maciej-kmon-399453109/)
+###[GitHub](https://github.com/MaciejKmon)
+    
+**SAPIS** is an API dedicated as a backend for platforms hosting literature
+content - especially stories and short novels. It is to be used for publishing
+purposes exclusively. If you want to use it for commercial purposes I don't mind but
+please make commercial payment features a separate component then base your platform
+on both of them interacting (For example separate bundle).
+
+**For Contributors** please create separate branch for each feature you want to implement. 
+I will be reviewing pull request and provide you feedback as soon as I can. 
+Also please remember to rebase against master branch to make sure that you will work on a 
+current release.
+
+My favourite programming principle is **Y.A.G.N.I** - please keep that in mind.
 
 Symfony Standard Edition
 ========================

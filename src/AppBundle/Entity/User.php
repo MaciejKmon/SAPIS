@@ -3,12 +3,13 @@ declare(strict_types=1);
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="user")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -28,6 +29,11 @@ class User
     private $password;
 
     /**
+     * @ORM\Column(type="string", length="100")
+     */
+    private $email;
+
+    /**
      * @ORM\OneToOne(targetEntity="Profile", mappedBy="user", cascade={"persist"})
      */
     private $profile;
@@ -42,10 +48,11 @@ class User
      */
     private $comments;
 
-    public function __construct(string $username, string $password)
+    public function __construct(string $username, string $password, string $email)
     {
         $this->username = $username;
         $this->setPassword($password);
+        $this->setEmail($email);
     }
 
     /**
@@ -78,6 +85,22 @@ class User
     public function setPassword(string $password)
     {
         $this->password = md5($password);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 
     /**
@@ -126,5 +149,20 @@ class User
     public function setComments(array $comments)
     {
         $this->comments = $comments;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }
