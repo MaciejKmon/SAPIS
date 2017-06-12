@@ -1,10 +1,14 @@
 SAPIS - Simple API for literature stories
 =========================================
 
-##by Maciej Kmon
+by Maciej Kmon
+--------------
 
-###[Linkedin](https://www.linkedin.com/in/maciej-kmon-399453109/)
-###[GitHub](https://github.com/MaciejKmon)
+[Linkedin](https://www.linkedin.com/in/maciej-kmon-399453109/)
+--------------
+
+[GitHub](https://github.com/MaciejKmon)
+--------------
     
 **SAPIS** is an API dedicated as a backend for platforms hosting literature
 content - especially stories and short novels. It is to be used for publishing

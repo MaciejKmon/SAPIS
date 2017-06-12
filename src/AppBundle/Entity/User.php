@@ -48,6 +48,11 @@ class User implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $roles;
+
     public function __construct(string $username, string $password, string $email)
     {
         $this->username = $username;
@@ -84,7 +89,7 @@ class User implements UserInterface
      */
     public function setPassword(string $password)
     {
-        $this->password = md5($password);
+        $this->password = $password;
     }
 
     /**
@@ -151,18 +156,23 @@ class User implements UserInterface
         $this->comments = $comments;
     }
 
+    /**
+     * @return string
+     */
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        return $this->roles;
     }
 
-    public function getSalt()
+    /**
+     * @param string[]
+     */
+    public function setRoles(array $roles = ['ROLE_USER'])
     {
-        // TODO: Implement getSalt() method.
+        $this->roles = $roles;
     }
 
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
+    public function getSalt() {}
+
+    public function eraseCredentials() {}
 }

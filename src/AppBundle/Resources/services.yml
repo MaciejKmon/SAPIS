@@ -2,3 +2,7 @@ services:
   typechecker:
     class: AppBundle\Services\TypeChecker
     arguments: ['@doctrine.orm.entity_manager']
+
+  token.authenticator:
+          class: AppBundle\Security\TokenAuthenticator
+          parent: lexik_jwt_authentication.security.guard.jwt_token_authenticator

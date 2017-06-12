@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Services;
 
-class TypeChecker
+final class TypeChecker
 {
     public static function isOfType(string $expected, array $toCheck)
     {
