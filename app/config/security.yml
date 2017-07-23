@@ -46,7 +46,7 @@ security:
         users:
             guard:
                 authenticators:
-                    - token.authenticator
+                    - lexik_jwt_authentication.security.guard.jwt_token_authenticator
             stateless: true
 
 
