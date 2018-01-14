@@ -26,22 +26,19 @@ security:
             anonymous: true
             stateless: true
 
+        register:
+            pattern: ^/register
+            anonymous: true
+            stateless: true
+
         login:
             pattern: ^/login
             anonymous: true
             stateless: true
             form_login:
-                login_path: /login
                 check_path: /login
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
-                username_parameter: username
-                password_parameter: password
-
-        register:
-            pattern: ^/register
-            anonymous: true
-            stateless: true
 
         users:
             guard:

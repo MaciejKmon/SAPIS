@@ -9,8 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class AuthenticationController extends Controller
 {
@@ -18,7 +16,7 @@ class AuthenticationController extends Controller
      * @Route("/login")
      * @Method("POST")
      */
-    public function loginAction (Request $request, UserInterface $userInterface)
+    public function loginAction (Request $request)
     {
         $data = $request->getContent();
         $tokenAuth = $this->get('token.authenticator');
@@ -26,7 +24,9 @@ class AuthenticationController extends Controller
             return new JsonResponse(['login failed'], Response::HTTP_BAD_REQUEST);
         }
 
-        return new JsonResponse(['some response'], Response::HTTP_OK);
+        return new JsonResponse([
+        ],
+            Response::HTTP_OK);
     }
 
     /**
@@ -48,7 +48,7 @@ class AuthenticationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($newUser);
         $em->flush();
+
+        return new JsonResponse(['User has been created'], Response::HTTP_CREATED);
     }
-
-
 }
