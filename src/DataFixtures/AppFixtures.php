@@ -23,7 +23,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $this->generateUsers(self::USERS_AMOUNT);
+        $this->generateUsers(self::USERS_AMOUNT, $manager);
         $manager->flush();
     }
 
