@@ -30,10 +30,13 @@ class AppFixtures extends Fixture
     private function generateUsers($howMany, ObjectManager $manager)
     {
         for ($counter = 0; $counter < $howMany; $counter++) {
-            $user = new User();
+            $user = new User(
+                'user' . $counter,
+                'passwor'. $counter .'d',
+                'exampleEmail' . $counter . '@exxampledomain.com'
+
+            );
             $user->setProfile($this->createUserProfile($counter));
-            $user->setEmail('exampleEmail' . $counter . '@exxampledomain.com');
-            $user->setPassword('passwor'. $counter .'d');
             $user->setRoles(['ROLE_USER']);
             $user->setStories($this->generateStories(rand($counter, $counter + self::RANDOM_NUMBER)));
             $manager->persist($user);
