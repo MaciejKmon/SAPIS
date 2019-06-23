@@ -1,27 +1,38 @@
 <?php
-namespace Entity;
+namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="score")
+ */
 class Score
 {
     const MAX_SCORE = 10;
     const MIN_SCORE = 0;
+
     /**
-     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var int
+     * @ORM\Column(type="integer")
      */
     private $score;
 
     /**
-     * @var Story
+     * @ORM\ManyToOne(targetEntity="Story", inversedBy="scores")
+     * @ORM\JoinColumn(name="storyId", referencedColumnName="id", onDelete="CASCADE")
      */
     private $story;
 
     /**
-     * @var User
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="voterId", referencedColumnName="id")
      */
     private $voter;
 
@@ -66,7 +77,7 @@ class Score
             return;
         }
 
-        return new \Exception('Invalid Score', 400);
+        return new \Exception('Invalid Score');
     }
 
     /**

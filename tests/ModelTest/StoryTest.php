@@ -12,9 +12,6 @@ class StoryTest extends TestCase
     public function testGetSet()
     {
         $body = 'Sample story body';
-        if(file_exists('../Resources/story.txt')) {
-            $body = file_get_contents('../Resources/story.txt');
-        }
         $sampleStory = new Story($this->createMock(User::class), $body, 'Sample Title');
         $sampleStory->setScores([new Score(4, $sampleStory, $this->createMock(User::class)), new Score(7, $sampleStory, $this->createMock(User::class))]);
         $sampleStory->setComments([new Comment($this->createMock(User::class), $sampleStory, 'Comment1')]);

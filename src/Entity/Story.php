@@ -1,37 +1,46 @@
 <?php
 declare(strict_types=1);
+namespace App\Entity;
 
-namespace Entity;
+use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Score;
 
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="story")
+ */
 class Story
 {
     /**
-     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var User
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="authorId", referencedColumnName="id")
      */
     private $author;
 
     /**
-     * @var string
+     * @ORM\Column(type="text")
      */
     private $body;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=100)
      */
     private $title;
 
     /**
-     * @var Score[]
+     * @ORM\OneToMany(targetEntity="Score", mappedBy="story")
      */
     private $scores;
 
     /**
-     * @var Comment[]
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="story")
      */
     private $comments;
 

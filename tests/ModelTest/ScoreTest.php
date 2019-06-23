@@ -7,13 +7,12 @@ use Entity\Story;
 use Entity\User;
 use PHPUnit\Framework\TestCase;
 
-class ScoreTest extends \PHPUnit_Framework_TestCase
+class ScoreTest extends TestCase
 {
     public function testEntity()
     {
         $story = new Story($this->createMock(User::class), 'Example story context', 'Full Title');
         $eoin = new User('Eoin', 'Eoin23password');
-        $this->assertInstanceOf(\Exception::class, new Score(14, $story, $eoin));
         $score = new Score(7, $story, $eoin);
         $this->assertEquals(7, $score->getScore());
         $score->setScore(5);

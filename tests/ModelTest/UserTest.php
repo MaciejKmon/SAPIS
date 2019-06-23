@@ -12,7 +12,7 @@ class UserTest extends TestCase
     public function testGetSet()
     {
         $users = [];
-        array_push($users, new User('Eoin', 'Eoin23password'), new User('Nati', 'Natasha78password'));
+        array_push($users, new User('Eoin', 'Eoin23password', 'e@wp.pl'), new User('Nati', 'Natasha78password', 'nati@org.eu'));
 
         $eoin = $users[0];
         $eoin->setComments([$this->createMock(Comment::class), $this->createMock(Comment::class)]);

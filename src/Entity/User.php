@@ -1,44 +1,63 @@
 <?php
 declare(strict_types=1);
+namespace App\Entity;
 
-namespace Entity;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class User
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="user")
+ */
+class User implements UserInterface
 {
     /**
-     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string
+     * @ORM\Column(name="username", type="string", length=100, unique=true)
      */
     private $username;
 
     /**
-     * @var string
+     * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
 
     /**
-     * @var Profile
+     * @ORM\Column(type="string", length=100)
+     */
+    private $email;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Profile", mappedBy="user", cascade={"persist"})
      */
     private $profile;
 
     /**
-     * @var Story[]
+     * @ORM\OneToMany(targetEntity="Story", mappedBy="author")
      */
     private $stories;
 
     /**
-     * @var Comment[]
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="author")
      */
     private $comments;
 
-    public function __construct($username, $password)
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $roles;
+
+    public function __construct(string $username, string $password, string $email)
     {
         $this->username = $username;
         $this->setPassword($password);
+        $this->setEmail($email);
     }
 
     /**
@@ -70,7 +89,23 @@ class User
      */
     public function setPassword(string $password)
     {
-        $this->password = md5($password);
+        $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 
     /**
@@ -120,4 +155,24 @@ class User
     {
         $this->comments = $comments;
     }
+
+    /**
+     * @return string
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param string[]
+     */
+    public function setRoles(array $roles = ['ROLE_USER'])
+    {
+        $this->roles = $roles;
+    }
+
+    public function getSalt() {}
+
+    public function eraseCredentials() {}
 }

@@ -1,21 +1,15 @@
 <?php
-namespace src\Services;
+namespace App\Services;
 
-class TypeChecker
+final class TypeChecker
 {
-    public static function isOfType( $expected, array $toCheck)
+    public static function isOfType(string $expected, array $toCheck)
     {
-        $isThisType = true;
-        if(!is_object($expected)) {
-            return new \InvalidArgumentException();
-        }
-        array_walk($toCheck, function ($value) use (&$isThisType, $expected)
-        {
-            if (!$value instanceof $expected) {
-                $isThisType = false;
+        foreach ($toCheck as $key => $value) {
+            if (get_class($value) !== $expected) {
+                return false;
             }
-        });
-
-        return $isThisType;
+        }
+        return true;
     }
 }

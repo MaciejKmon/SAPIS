@@ -1,31 +1,40 @@
 <?php
+namespace App\Entity;
 
-namespace Entity;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="comment")
+ */
 class Comment
 {
     /**
-     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var User
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="authorId", referencedColumnName="id")
      */
     private $author;
 
     /**
-     * @var Story
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="storyId", referencedColumnName="id")
      */
     private $story;
 
     /**
-     * @var string
+     * @ORM\Column(type="text")
      */
     private $body;
 
     /**
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
@@ -55,7 +64,7 @@ class Comment
     /**
      * @param string $body
      */
-    public function setBody(string $body)
+    public function setBody(string $body): void
     {
         $this->body = $body;
     }

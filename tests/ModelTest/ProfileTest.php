@@ -12,12 +12,8 @@ class ProfileTest extends TestCase
         $eoin = new User('Eoin', 'Eoin23password');
         $eoinProfile = new Profile($eoin);
         $eoinProfile->setCountry('New Zealand');
-        $eoinProfile->setTheme('Sample profile theme');
+        $eoinProfile->setTheme('Sample Text');
         $text = 'Sample Text';
-
-        if(file_exists('../Resources/story.txt')) {
-            $text = file_get_contents('../Resources/story.txt');
-        }
 
         $eoinProfile->setBiography($text);
         $eoinProfile->setAbout($text);
