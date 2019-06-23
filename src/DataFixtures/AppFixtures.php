@@ -21,6 +21,11 @@ class AppFixtures extends Fixture
     const RANDOM_NUMBER = 20;
     const USERS_AMOUNT = 30;
 
+    /**
+     * @var User|null $user
+     */
+    private $user;
+
     public function load(ObjectManager $manager)
     {
         $this->generateUsers(self::USERS_AMOUNT, $manager);
@@ -36,10 +41,12 @@ class AppFixtures extends Fixture
                 'exampleEmail' . $counter . '@exxampledomain.com'
 
             );
+            $this->user = $user;
             $user->setProfile($this->createUserProfile($counter));
             $user->setRoles(['ROLE_USER']);
             $user->setStories($this->generateStories(rand($counter, $counter + self::RANDOM_NUMBER)));
             $manager->persist($user);
+
         }
     }
 
@@ -59,10 +66,12 @@ class AppFixtures extends Fixture
 
     private function createUserProfile($number)
     {
-        $profile = new Profile();
+        $profile = new Profile($this->user);
         $profile->setTheme(substr(self::TEXT, $number, self::TEXT_LENGTH_SHORT));
         $profile->setAbout(substr(self::TEXT, $number, self::TEXT_LENGTH_SHORT));
         $profile->setBiography(substr(self::TEXT, rand($number, self::RANDOM_NUMBER), self::TEXT_LENGTH_SHORT));
         $profile->setCountry('Randomnia' . $number);
+
+        return $profile;
     }
 }
