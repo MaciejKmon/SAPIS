@@ -1,10 +1,10 @@
 <?php
-
-
 namespace App\Services;
 
-
-class PaginationService
+final class PaginationService
 {
+    public static function paginate(int $all, int $current)
+    {
 
+    }
 }
