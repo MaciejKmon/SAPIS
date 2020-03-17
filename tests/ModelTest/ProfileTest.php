@@ -1,15 +1,15 @@
 <?php
 namespace Test\ModelTest;
 
-use Entity\Profile;
-use Entity\User;
+use App\Entity\Profile;
+use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
 class ProfileTest extends TestCase
 {
     public function testEntity ()
     {
-        $eoin = new User('Eoin', 'Eoin23password');
+        $eoin = new User('Eoin', 'Eoin23password', "EoinSome@gmailer.com");
         $eoinProfile = new Profile($eoin);
         $eoinProfile->setCountry('New Zealand');
         $eoinProfile->setTheme('Sample Text');

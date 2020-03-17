@@ -1,17 +1,17 @@
 <?php
 namespace ModelTest;
 
-use Entity\Profile;
-use Entity\Score;
-use Entity\Story;
-use Entity\User;
+use App\Entity\Profile;
+use App\Entity\Score;
+use App\Entity\Story;
+use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
 class ScoreTest extends TestCase
 {
     public function testEntity()
     {
-        $story = new Story($this->createMock(User::class), 'Example story context', 'Full Title');
+        $story = new Story($this->createMock(User::class), 'Example story context', 'Full Title', "EoinSome@gmailer.com");
         $eoin = new User('Eoin', 'Eoin23password');
         $score = new Score(7, $story, $eoin);
         $this->assertEquals(7, $score->getScore());
