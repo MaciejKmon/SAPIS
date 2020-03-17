@@ -152,9 +152,6 @@
     "symfony/cache": {
         "version": "v4.1.7"
     },
-    "symfony/cache-contracts": {
-        "version": "v1.1.5"
-    },
     "symfony/config": {
         "version": "v4.1.7"
     },
@@ -166,9 +163,6 @@
             "version": "3.3",
             "ref": "f3a28efb32f20b8740fd763651cabd780bce43da"
         }
-    },
-    "symfony/contracts": {
-        "version": "v1.1.5"
     },
     "symfony/css-selector": {
         "version": "v4.1.7"
@@ -337,9 +331,6 @@
     },
     "symfony/serializer-pack": {
         "version": "v1.0.1"
-    },
-    "symfony/service-contracts": {
-        "version": "v1.1.5"
     },
     "symfony/stopwatch": {
         "version": "v4.1.7"

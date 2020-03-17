@@ -39,7 +39,7 @@ class User implements UserInterface
     private $profile;
 
     /**
-     * @ORM\OneToMany(targetEntity="Story", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="Story", mappedBy="author", cascade={"persist"})
      */
     private $stories;
 
@@ -49,7 +49,7 @@ class User implements UserInterface
     private $comments;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
     private $roles;
 
