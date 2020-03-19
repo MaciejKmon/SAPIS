@@ -13,7 +13,11 @@ class StoryController extends AbstractController
 {
     const DEFAULT_PAGINATION = 50;
     /**
-     * @Route("/stories", name="story_all")
+     * @Route(
+     *     "/stories",
+     *     name="story_all",
+     *     methods={"GET"}
+     * )
      */
     public function getAllAction()
     {
@@ -26,7 +30,11 @@ class StoryController extends AbstractController
     }
 
     /**
-     * @Route("stories/{id}", name="story");
+     * @Route(
+     *     "/stories/{id}",
+     *     name="story",
+     *     methods={"GET"}
+     * );
      */
     public function getAction(Request $request, $id)
     {
@@ -35,5 +43,43 @@ class StoryController extends AbstractController
         if (!$story) {
             return new JsonResponse('not found', Response::HTTP_NOT_FOUND);
         }
+
+        return new JsonResponse($story);
+    }
+
+    /**
+     * @Route(
+     *     "/stories",
+     *     name="story_new",
+     *     methods={"POST"}
+     * )
+     */
+    public function createNewAction(Request $request)
+    {
+        
+    }
+
+    /**
+     * @Route(
+     *     "/stories/{id}",
+     *     name="story_update",
+     *     methods={"PATCH"}
+     * )
+     */
+    public function updateAction(Request $request)
+    {
+
+    }
+
+    /**
+     * @Route(
+     *     "/stories/{id}",
+     *     name="story_update",
+     *     methods={"DELETE"}
+     * )
+     */
+    public function deleteAction(Request $request)
+    {
+
     }
 }
