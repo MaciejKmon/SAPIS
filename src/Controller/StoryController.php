@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Form\StoryType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -56,7 +57,13 @@ class StoryController extends AbstractController
      */
     public function createNewAction(Request $request)
     {
-        
+        $form = $this->createForm(StoryType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            
+        }
+
     }
 
     /**
