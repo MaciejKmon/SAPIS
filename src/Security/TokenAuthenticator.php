@@ -1,9 +1,10 @@
 <?php
-
 namespace App\Security;
 
+use App\Entity\ApiToken;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -21,7 +22,6 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         $this->em = $em;
     }
 
-
     /**
      * @inheritDoc
      */
@@ -37,7 +37,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function supports(Request $request)
     {
-        return $request->headers->has('X-AUTH-TOKEN');
+        return true;
     }
 
     /**
@@ -62,8 +62,14 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             return;
         }
 
-        // if a User object, checkCredentials() is called
-        $userWithToken = $this->em->getRepository(User::class)->findOneBy(['apiToken' => $apiToken]);
+        $tokenEntity = $this->em->getRepository(ApiToken::class)->findOneBy(['token' => $apiToken]);
+
+        if (!$tokenEntity) {
+
+            return;
+        }
+
+        $userWithToken = $tokenEntity->getUser();
 
         return $userWithToken;
     }
@@ -73,10 +79,6 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function checkCredentials($credentials, UserInterface $user)
     {
-        // check credentials - e.g. make sure the password is valid
-        // no credential check is needed in this case
-
-        // return true to cause authentication success
         return true;
     }
 
@@ -85,9 +87,9 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        $data = [
-            'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
-        ];
+        $data = ['message' => 'Incorrect Access Token'];
+
+        return new JsonResponse($data, Response::HTTP_FORBIDDEN);
     }
 
     /**
