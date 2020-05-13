@@ -37,7 +37,16 @@ class ApiTokenRepositoryTest extends KernelTestCase
 
     public function testFindValidToken()
     {
-        $currentDate = new \DateTime();
         $returnedApiToken = $this->entityManager->getRepository(ApiToken::class)->findValidToken($this->apiToken->getToken());
+
+        self::assertInstanceOf(ApiToken::class);
+    }
+
+    protected function tearDown()
+    {
+        parent::tearDown();
+
+        $this->entityManager->remove($this->apiToken);
+        $this->entityManager->flush();
     }
 }

@@ -23,10 +23,12 @@ class ApiTokenRepository extends ServiceEntityRepository
     {
         $currentDate = new \DateTime();
 
-        return $this->createQueryBuilder('a')
+        $qb = $this->createQueryBuilder('a')
             ->where('a.token = :token')
             ->andWhere(':date < a.expires_at')
             ->setParameter('date', $currentDate);
+
+        return $qb->getQuery()->getOneOrNullResult();
 
     }
 }
