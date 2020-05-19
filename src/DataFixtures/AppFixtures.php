@@ -7,6 +7,7 @@ use App\Entity\Story;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
@@ -19,37 +20,45 @@ class AppFixtures extends Fixture
 
     const TEXT_LENGTH_LONG = 100;
     const TEXT_LENGTH_SHORT = 50;
-    const RANDOM_NUMBER = 20;
-    const USERS_AMOUNT = 30;
+    const RANDOM_NUMBER_MAX = 20;
+    const RANDOM_NUMBER_MIN = 0;
+
 
     /**
      * @var User|null $user
      */
     private $user;
+    private $passwordEncoder;
+    private $randomNumber;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+        $this->randomNumber = rand(self::RANDOM_NUMBER_MIN, self::RANDOM_NUMBER_MAX);
+    }
 
     public function load(ObjectManager $manager)
     {
-        $this->generateUsers(self::USERS_AMOUNT, $manager);
+        $this->generateUsers($manager);
         $manager->flush();
     }
 
-    private function generateUsers($howMany, ObjectManager $manager)
+    private function generateUsers(ObjectManager $manager)
     {
-        for ($counter = 0; $counter < $howMany; $counter++) {
             $user = new User(
-                'user' . $counter,
-                'passwor'. $counter .'d',
-                'exampleEmail' . $counter . '@exxampledomain.com'
+                getenv('FIXTURES_USER_USERNAME'),
+                '',
+                getenv('FIXTURES_USER_EMAIL')
             );
+            $user->setPassword($this->passwordEncoder->encodePassword($user, getenv('FIXTURES_USER_PASSWORD')));
             $this->user = $user;
-            $user->setProfile($this->createUserProfile($counter));
+            $user->setProfile($this->createUserProfile($this->randomNumber));
             $user->setRoles(['ROLE_USER']);
-            $user->setStories($this->generateStories(rand($counter, $counter + self::RANDOM_NUMBER), $user));
+            $user->setStories($this->generateStories($this->randomNumber, $user));
             $manager->persist($user);
 
             $apiToken = new ApiToken($user);
             $manager->persist($apiToken);
-        }
     }
 
     private function generateStories($howMany, User $user)
@@ -58,7 +67,7 @@ class AppFixtures extends Fixture
 
         for ($counter = 0; $counter < $howMany; $counter++) {
             $title = substr(self::TEXT, rand(self::TEXT_LENGTH_SHORT, self::TEXT_LENGTH_LONG), rand(++$counter, self::TEXT_LENGTH_LONG));
-            $body = substr(self::TEXT, rand($counter, self::TEXT_LENGTH_LONG + $counter), $counter * self::RANDOM_NUMBER);
+            $body = substr(self::TEXT, rand($counter, self::TEXT_LENGTH_LONG + $counter), $counter * $this->randomNumber);
             $story = new Story($user, $body, $title);
             $stories[] = $story;
         }
@@ -71,7 +80,7 @@ class AppFixtures extends Fixture
         $profile = new Profile($this->user);
         $profile->setTheme(substr(self::TEXT, $number, self::TEXT_LENGTH_SHORT));
         $profile->setAbout(substr(self::TEXT, $number, self::TEXT_LENGTH_SHORT));
-        $profile->setBiography(substr(self::TEXT, rand($number, self::RANDOM_NUMBER), self::TEXT_LENGTH_SHORT));
+        $profile->setBiography(substr(self::TEXT, rand($number, $this->randomNumber), self::TEXT_LENGTH_SHORT));
         $profile->setCountry('Randomnia' . $number);
 
         return $profile;
