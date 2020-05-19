@@ -5,7 +5,7 @@ use App\Form\StoryType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Compopnent\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Story;
 use App\Services\PaginationService;
@@ -25,7 +25,7 @@ class StoryController extends AbstractController
         $pagination = self::DEFAULT_PAGINATION;
         $stories = $this->getDoctrine()->getRepository(Story::class)->findAll([], null, $pagination);
 
-        if ($this->getDoctrine()->getRepository(Story::class)->count())
+        //if ($this->getDoctrine()->getRepository(Story::class)->count())
 
         return new JsonResponse($stories);
     }
