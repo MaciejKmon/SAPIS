@@ -1,7 +1,7 @@
 <?php
 namespace Tests\ServicesTest;
 
-use Services\TypeChecker;
+use App\Services\TypeChecker;
 use PHPUnit\Framework\TestCase;
 
 class TypeCheckerTest extends TestCase

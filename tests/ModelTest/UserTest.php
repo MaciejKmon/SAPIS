@@ -1,11 +1,11 @@
 <?php
 namespace Test\ModelTest;
 
-use Entity\Comment;
-use Entity\Profile;
-use Entity\Story;
+use App\Entity\Comment;
+use App\Entity\Profile;
+use App\Entity\Story;
 use PHPUnit\Framework\TestCase;
-use Entity\User;
+use App\Entity\User;
 
 class UserTest extends TestCase
 {

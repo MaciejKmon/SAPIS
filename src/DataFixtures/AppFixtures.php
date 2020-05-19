@@ -1,6 +1,7 @@
 <?php
 namespace App\DataFixtures;
 
+use App\Entity\ApiToken;
 use App\Entity\Profile;
 use App\Entity\Story;
 use App\Entity\User;
@@ -39,25 +40,26 @@ class AppFixtures extends Fixture
                 'user' . $counter,
                 'passwor'. $counter .'d',
                 'exampleEmail' . $counter . '@exxampledomain.com'
-
             );
             $this->user = $user;
             $user->setProfile($this->createUserProfile($counter));
             $user->setRoles(['ROLE_USER']);
-            $user->setStories($this->generateStories(rand($counter, $counter + self::RANDOM_NUMBER)));
+            $user->setStories($this->generateStories(rand($counter, $counter + self::RANDOM_NUMBER), $user));
             $manager->persist($user);
 
+            $apiToken = new ApiToken($user);
+            $manager->persist($apiToken);
         }
     }
 
-    private function generateStories($howMany)
+    private function generateStories($howMany, User $user)
     {
         $stories = [];
 
         for ($counter = 0; $counter < $howMany; $counter++) {
-            $story = new Story();
-            $story->setTitle(substr(self::TEXT, rand(self::TEXT_LENGTH_SHORT, self::TEXT_LENGTH_LONG), rand(++$counter, self::TEXT_LENGTH_LONG)));
-            $story->setBody(substr(self::TEXT, rand($counter, self::TEXT_LENGTH_LONG + $counter), $counter * self::RANDOM_NUMBER));
+            $title = substr(self::TEXT, rand(self::TEXT_LENGTH_SHORT, self::TEXT_LENGTH_LONG), rand(++$counter, self::TEXT_LENGTH_LONG));
+            $body = substr(self::TEXT, rand($counter, self::TEXT_LENGTH_LONG + $counter), $counter * self::RANDOM_NUMBER);
+            $story = new Story($user, $body, $title);
             $stories[] = $story;
         }
 
