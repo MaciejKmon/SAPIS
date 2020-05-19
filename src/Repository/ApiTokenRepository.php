@@ -25,7 +25,8 @@ class ApiTokenRepository extends ServiceEntityRepository
 
         $qb = $this->createQueryBuilder('a')
             ->where('a.token = :token')
-            ->andWhere(':date < a.expires_at')
+            ->andWhere(':date < a.expiresAt')
+            ->setParameter('token', $apiToken)
             ->setParameter('date', $currentDate);
 
         return $qb->getQuery()->getOneOrNullResult();

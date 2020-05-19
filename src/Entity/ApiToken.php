@@ -23,7 +23,7 @@ class ApiToken
     private $token;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="expires_at")
      */
     private $expiresAt;
 

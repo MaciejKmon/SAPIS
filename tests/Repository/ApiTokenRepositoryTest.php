@@ -28,6 +28,9 @@ class ApiTokenRepositoryTest extends KernelTestCase
         $this->user = $this->entityManager->getRepository(User::class)->findAll()[0];
         $this->apiToken = new ApiToken($this->user);
 
+        $this->entityManager->persist($this->apiToken);
+        $this->entityManager->flush();
+
         $currentDate = new \DateTime();
 
         if ($currentDate >= $this->apiToken->getExpiresAt()) {
@@ -39,14 +42,16 @@ class ApiTokenRepositoryTest extends KernelTestCase
     {
         $returnedApiToken = $this->entityManager->getRepository(ApiToken::class)->findValidToken($this->apiToken->getToken());
 
-        self::assertInstanceOf(ApiToken::class);
+
+        self::assertInstanceOf(ApiToken::class, $returnedApiToken);
     }
 
     protected function tearDown()
     {
         parent::tearDown();
 
-        $this->entityManager->remove($this->apiToken);
+        $entityToDelete = $this->entityManager->merge($this->apiToken);
+        $this->entityManager->remove($entityToDelete);
         $this->entityManager->flush();
     }
 }

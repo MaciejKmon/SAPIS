@@ -12,7 +12,7 @@ class ScoreTest extends TestCase
     public function testEntity()
     {
         $story = new Story($this->createMock(User::class), 'Example story context', 'Full Title', "EoinSome@gmailer.com");
-        $eoin = new User('Eoin', 'Eoin23password');
+        $eoin = new User('Eoin', 'Eoin23password', 'x@gmail.cmm');
         $score = new Score(7, $story, $eoin);
         $this->assertEquals(7, $score->getScore());
         $score->setScore(5);
