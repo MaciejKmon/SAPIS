@@ -1,6 +1,7 @@
 <?php
 namespace App\DataFixtures;
 
+use App\Entity\ApiToken;
 use App\Entity\Profile;
 use App\Entity\Story;
 use App\Entity\User;
@@ -46,6 +47,8 @@ class AppFixtures extends Fixture
             $user->setStories($this->generateStories(rand($counter, $counter + self::RANDOM_NUMBER), $user));
             $manager->persist($user);
 
+            $apiToken = new ApiToken($user);
+            $manager->persist($apiToken);
         }
     }
 

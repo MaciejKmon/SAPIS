@@ -3,9 +3,8 @@ namespace App\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,8 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class AuthenticationController extends Controller
 {
     /**
-     * @Route("/login")
-     * @Method("POST")
+     * @Route("/login", methods={"POST"})
      */
     public function loginAction (Request $request)
     {
@@ -30,8 +28,7 @@ class AuthenticationController extends Controller
     }
 
     /**
-     * @Route("/register")
-     * @Method("POST")
+     * @Route("/register", methods={"POST"})
      */
     public function registerAction(Request $request)
     {
