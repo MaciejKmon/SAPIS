@@ -6,6 +6,10 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        login:
+            anonymous: ~
+            pattern: ^/login/
+
         main:
             anonymous: ~
             logout: ~

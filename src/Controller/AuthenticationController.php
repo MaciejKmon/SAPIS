@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class AuthenticationController extends Controller
@@ -15,16 +16,28 @@ class AuthenticationController extends Controller
     /**
      * @Route("/login", methods={"POST"})
      */
-    public function loginAction (Request $request)
+    public function loginAction (Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
+        if (empty($request->get('username')) || empty($request->get('password'))) {
 
-//        if () {
-//            return new JsonResponse(['login failed'], Response::HTTP_BAD_REQUEST);
-//        }
+            return new JsonResponse(['message' => 'In order to login, please provide username and password'], Response::HTTP_BAD_REQUEST);
+        }
 
-        return new JsonResponse([
-        ],
-            Response::HTTP_OK);
+        $user = $this->getDoctrine()->getManager()->getRepository(User::class)->findOneBy(['username' => $request->get('username')]);
+
+        if(empty($user)) {
+
+            return new JsonResponse(['message' => 'User not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        if (!$passwordEncoder->isPasswordValid($user, $request->get('password'))) {
+
+            return new JsonResponse(['message' => 'User not found'], Response::HTTP_UNAUTHORIZED);
+        }
+
+
+
+        return new JsonResponse([], Response::HTTP_OK);
     }
 
     /**

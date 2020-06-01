@@ -6,10 +6,11 @@ use App\Entity\Profile;
 use App\Entity\Story;
 use PHPUnit\Framework\TestCase;
 use App\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserTest extends TestCase
 {
-    public function testGetSet()
+    public function testGetSet(UserPasswordEncoderInterface $passwordEncoder)
     {
         $users = [];
         array_push($users, new User('Eoin', 'Eoin23password', 'e@wp.pl'), new User('Nati', 'Natasha78password', 'nati@org.eu'));
@@ -25,7 +26,6 @@ class UserTest extends TestCase
         $nati->setStories([$this->createMock(Story::class)]);
 
         $this->assertEquals('Eoin',$eoin->getUsername());
-        $this->assertEquals(md5('Eoin23password'), $eoin->getPassword());
         $this->assertNotNull($eoin->getComments());
         $comments = $eoin->getComments();
         $this->assertInstanceOf(Comment::class, $comments[0]);
@@ -36,7 +36,6 @@ class UserTest extends TestCase
         $this->assertInstanceOf(Story::class, $stories[0]);
 
         $this->assertEquals('Nati', $nati->getUsername());
-        $this->assertEquals(md5('Natasha78password'), $nati->getPassword());
         $this->assertNotNull($nati->getComments());
         $comments = $nati->getComments();
         $this->assertInstanceOf(Comment::class, $comments[0]);
