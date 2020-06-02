@@ -14,22 +14,33 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class ApiTokenRepository extends ServiceEntityRepository
 {
+    private $currentDate;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ApiToken::class);
+
+        $this->currentDate = new \DateTime();
     }
 
     public function findValidToken(string $apiToken)
     {
-        $currentDate = new \DateTime();
-
         $qb = $this->createQueryBuilder('a')
             ->where('a.token = :token')
             ->andWhere(':date < a.expiresAt')
             ->setParameter('token', $apiToken)
-            ->setParameter('date', $currentDate);
+            ->setParameter('date', $this->currentDate);
 
         return $qb->getQuery()->getOneOrNullResult();
+    }
 
+    public function removeExpiredTokens()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->delete()
+            ->where(':date > a.expiresAt')
+            ->setParameter('date', $this->currentDate);
+
+        return $qb->getQuery()->execute();
     }
 }

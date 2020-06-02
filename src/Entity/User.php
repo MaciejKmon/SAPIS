@@ -2,8 +2,10 @@
 declare(strict_types=1);
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\ApiToken;
 
 /**
  * @ORM\Entity()
@@ -53,8 +55,15 @@ class User implements UserInterface
      */
     private $roles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ApiToken", mappedBy="user")
+     */
+    private $apiTokens;
+
     public function __construct(string $username, string $password, string $email)
     {
+        $this->apiTokens = new ArrayCollection();
+
         $this->username = $username;
         $this->setPassword($password);
         $this->setEmail($email);
@@ -170,6 +179,11 @@ class User implements UserInterface
     public function setRoles(array $roles = ['ROLE_USER'])
     {
         $this->roles = $roles;
+    }
+
+    public function refreshToken()
+    {
+
     }
 
     public function getSalt() {}

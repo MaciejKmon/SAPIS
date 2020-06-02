@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\ApiToken;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -35,9 +36,9 @@ class AuthenticationController extends Controller
             return new JsonResponse(['message' => 'User not found'], Response::HTTP_UNAUTHORIZED);
         }
 
+        $newToken = $this->refreshToken($user);
 
-
-        return new JsonResponse([], Response::HTTP_OK);
+        return new JsonResponse(['token' => $newToken->getToken()], Response::HTTP_OK);
     }
 
     /**
@@ -61,5 +62,16 @@ class AuthenticationController extends Controller
         $em->flush();
 
         return new JsonResponse(['User has been created'], Response::HTTP_CREATED);
+    }
+
+    private function refreshToken ($user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $this->getDoctrine()->getManager()->getRepository(ApiToken::class)->removeExpiredTokens();
+        $newToken = new ApiToken($user);
+        $em->persist($newToken);
+        $em->flush();
+
+        return $newToken;
     }
 }
