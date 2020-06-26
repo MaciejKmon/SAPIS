@@ -2,8 +2,8 @@
 namespace App\Controller;
 
 use App\Entity\ApiToken;
-use AppBundle\Entity\User;
-use AppBundle\Form\UserType;
+use App\Entity\User;
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
