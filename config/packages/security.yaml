@@ -7,7 +7,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         login:
-            anonymous: ~
+            anonymous: true
             pattern: ^/login/
 
         main:

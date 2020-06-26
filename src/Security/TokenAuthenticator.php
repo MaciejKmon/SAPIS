@@ -15,6 +15,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class TokenAuthenticator extends AbstractGuardAuthenticator
 {
+    const LOGIN_ROUTE = "app_authentication_login";
     private $em;
 
     public function __construct(EntityManagerInterface $em)
@@ -37,6 +38,12 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function supports(Request $request)
     {
+        if ($request->attributes->get('_route') == self::LOGIN_ROUTE) {
+
+            return false;
+        }
+
+
         return true;
     }
 

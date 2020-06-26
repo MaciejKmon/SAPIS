@@ -1,11 +1,11 @@
-<?php
-
+<?
+declare(strict_types=1);
 namespace Tests\FunctionalTest\ControllerTest;
 
 use App\Controller\AuthenticationController;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AuthenticationControllerTest extends TestCase
+class AuthenticationControllerTest extends WebTestCase
 {
-
+    
 }

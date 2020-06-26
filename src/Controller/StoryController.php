@@ -23,9 +23,8 @@ class StoryController extends AbstractController
     public function getAllAction()
     {
         $pagination = self::DEFAULT_PAGINATION;
-        $stories = $this->getDoctrine()->getRepository(Story::class)->findAll([], null, $pagination);
+        $stories = $this->getDoctrine()->getRepository(Story::class)->findAll();
 
-        //if ($this->getDoctrine()->getRepository(Story::class)->count())
 
         return new JsonResponse($stories);
     }

@@ -3,8 +3,18 @@ namespace App\Services;
 
 final class PaginationService
 {
-    public static function paginate(int $all, int $current)
+    const MINIMUM = 1;
+    public function paginate(int $all, int $current)
     {
+        $next = $current++;
+        $previous = $current--;
 
+        if ($previous < self::MINIMUM) {
+            $next = null;
+        }
+
+        if ($next > $all) {
+            $next = null;
+        }
     }
 }
