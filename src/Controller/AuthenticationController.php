@@ -53,7 +53,7 @@ class AuthenticationController extends Controller
             return new JsonResponse($form->getErrors(), Response::HTTP_BAD_REQUEST);
         }
 
-//        $userData = $form->getData();
+        $userData = $form->getData();
 
         $newUser = new User($userData['username'], $userData['password'], $userData['email']);
 
